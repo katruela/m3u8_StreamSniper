@@ -1,0 +1,19 @@
+#EXTM3U
+#EXTINF:-1 tvg-name="Fox Sports",Fox Sports
+https://5.ftlly.com/foxsports/mono.m3u8?token=f41596bd7bc6d527eaf8a2ab2a5004f4f99bd680-c2-1793243201-1793225201
+#EXTINF:-1 tvg-name="Fox Sports 2",Fox Sports 2
+https://8.ftlly.com/foxsports2/mono.m3u8?token=bb53d6e27045486686e3e5a06a651ca9b32c6b6f-c6-1793243204-1793225204
+#EXTINF:-1 tvg-name="Fox Sports 3",Fox Sports 3
+https://6.ftlly.com/foxsports3/mono.m3u8?token=d0b9c97236345cc5528b09e4aad82145552afa50-c4-1793243207-1793225207
+#EXTINF:-1 tvg-name="TNT Sports",TNT Sports
+https://6.ftlly.com/tntsports/mono.m3u8?token=2139a74d20b51192fd9e2f8640735693f5826194-52-1793243210-1793225210
+#EXTINF:-1 tvg-name="ESPN Premium",ESPN Premium
+https://7.ftlly.com/espnpremium/mono.m3u8?token=07da3cab062b12745b13470cec64e08a7cfdbbda-33-1793243213-1793225213
+#EXTINF:-1 tvg-name="TyC Sports",TyC Sports
+https://6.ftlly.com/tycsports/mono.m3u8?token=2c06a3e6a64a758400b8f3bbf71555bbbd798381-9c-1793243216-1793225216
+#EXTINF:-1 tvg-name="TyC Sports Internacional (USA)",TyC Sports Internacional (USA)
+https://2.ftlly.com/tycinternacional/mono.m3u8?token=59109e34b54baa968d3613e84444d7dac1b85220-2f-1793243218-1793225218
+#EXTINF:-1 tvg-name="Telefe",Telefe
+https://7.ftlly.com/telefe/mono.m3u8?token=0df1e8be4ac57ac4157ea9fb0fc8a6e18dde0aa5-9d-1793243221-1793225221
+#EXTINF:-1 tvg-name="TV Pública",TV Pública
+https://10.ftlly.com/tvpublica/mono.m3u8?token=8c7870a78ab0270ad8298bdceba7b60743dcea3b-83-1793243224-1793225224
