@@ -9,7 +9,7 @@ jobs:
   fetch:
     runs-on: ubuntu-latest
     permissions:
-      contents: write       # OBLIGATORIO: Permite guardar el archivo .m3u en tu repo
+      contents: write       # OBLIGATORIO para guardar el archivo .m3u en tu repo
 
     steps:
       - name: Checkout repository
