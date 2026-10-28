@@ -1,24 +1,21 @@
-name: Fetch Stream URL
+name: Generar Lista IPTV Argentina
 
 on:
-  workflow_dispatch:
-    inputs:
-      url:
-        description: "The URL to scrape for m3u8 links (override default)"
-        required: true
-        default: "https://news.abplive.com/live-tv"
-      max_wait:
-        description: "Max seconds the script should wait for m3u8 (optional)"
-        required: false
-        default: "15"
+  schedule:
+    - cron: '0 */6 * * *'  # Se ejecuta automáticamente cada 6 horas
+  workflow_dispatch:        # Permite ejecutarlo manualmente con un clic
 
 jobs:
   fetch:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write       # OBLIGATORIO: Permite guardar el archivo .m3u en tu repo
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Setup Python
         uses: actions/setup-python@v4
@@ -28,8 +25,7 @@ jobs:
       - name: Cache pip
         uses: actions/cache@v4
         with:
-          path: |
-            ~/.cache/pip
+          path: ~/.cache/pip
           key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
           restore-keys: |
             ${{ runner.os }}-pip-
@@ -37,14 +33,7 @@ jobs:
       - name: Install system dependencies (Chromium + chromedriver)
         run: |
           sudo apt-get update -y
-          # Install chromium and chromedriver so a compatible driver is available from PATH
           sudo apt-get install -y chromium-browser chromium-chromedriver wget gnupg2 ca-certificates unzip
-          # show versions for debugging
-          echo "=== chrome/chromium versions ==="
-          google-chrome --version || true
-          chromium-browser --version || true
-          chromedriver --version || true
-          # export chromedriver path to GITHUB_ENV so script can pick it up
           echo "CHROMEDRIVER_PATH=$(which chromedriver)" >> $GITHUB_ENV
           echo "BROWSER_PATH=$(which chromium-browser || true)" >> $GITHUB_ENV
 
@@ -54,24 +43,23 @@ jobs:
           if [ -f requirements.txt ]; then
             pip install -r requirements.txt
           else
-            echo "requirements.txt not found — installing minimal deps"
             pip install selenium webdriver-manager
           fi
 
-      - name: Run Selenium script (🟢CLICK HERE TO VIEW RESULTS)
+      - name: Ejecutar Extractor para Canales de Argentina
         env:
-          TARGET_URL: ${{ github.event.inputs.url }}
-          MAX_WAIT_SECONDS: ${{ github.event.inputs.max_wait }}
-          # CHROMEDRIVER_PATH set earlier; your script reads this to skip downloads
           CHROMEDRIVER_PATH: ${{ env.CHROMEDRIVER_PATH }}
         run: |
-          echo -e "Running Selenium Script with TARGET_URL=${TARGET_URL} and MAX_WAIT_SECONDS=${MAX_WAIT_SECONDS}"
-          # make sure script is executable if needed
-          ls -l
-          python fetch_stream.py 2>&1 | tee fetch_stream_output.txt
+          python generar_lista.py 2>&1 | tee fetch_stream_output.txt
 
-      - name: Upload run log as artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: fetch-stream-log
-          path: fetch_stream_output.txt
+      - name: Verificar que el archivo exista
+        run: |
+          test -f argentina.m3u || { echo "No se generó argentina.m3u"; exit 1; }
+
+      - name: Guardar argentina.m3u en GitHub
+        run: |
+          git config --global user.name "GitHub Action Bot"
+          git config --global user.email "action@github.com"
+          git add argentina.m3u
+          git commit -m "Auto-actualización de canales argentina.m3u" || exit 0
+          git push
