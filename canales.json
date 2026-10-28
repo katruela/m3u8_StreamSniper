@@ -1,0 +1,38 @@
+[
+  {
+    "name": "Fox Sports",
+    "url": "https://tvf90.com/online.php?stream=foxsports"
+  },
+  {
+    "name": "Fox Sports 2",
+    "url": "https://tvf90.com/online.php?stream=foxsports2"
+  },
+  {
+    "name": "Fox Sports 3",
+    "url": "https://tvf90.com/online.php?stream=foxsports3"
+  },
+  {
+    "name": "TNT Sports",
+    "url": "https://tvf90.com/online.php?stream=tntsports"
+  },
+  {
+    "name": "ESPN Premium",
+    "url": "https://tvf90.com/online.php?stream=espnpremium"
+  },
+  {
+    "name": "TyC Sports",
+    "url": "https://tvf90.com/online.php?stream=tycsports"
+  },
+  {
+    "name": "TyC Sports Internacional (USA)",
+    "url": "https://tvf90.com/online.php?stream=tycinternacional"
+  },
+  {
+    "name": "Telefe",
+    "url": "https://tvf90.com/online.php?stream=telefe"
+  },
+  {
+    "name": "TV Pública",
+    "url": "https://tvf90.com/online.php?stream=tvpublica"
+  }
+]
